@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff7a00" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Zeg het maar · Dutch practice</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Zeg het maar</h1>
+    <button id="roleBtn" class="chip" hidden></button>
+  </header>
+
+  <!-- First visit: pick who you are -->
+  <section id="rolePicker" class="card" hidden>
+    <h2>Who's using this phone?</h2>
+    <p class="muted">You can switch later from the top right.</p>
+    <button class="big" data-role="learner">🎧 I'm learning Dutch<br /><small>Ask for words and listen</small></button>
+    <button class="big" data-role="speaker">🎙️ I speak Dutch<br /><small>Record the pronunciations</small></button>
+  </section>
+
+  <main id="app" hidden>
+    <form id="addForm" class="card" hidden>
+      <label for="phraseInput">What do you want to hear?</label>
+      <input id="phraseInput" maxlength="200" placeholder="e.g. Scheveningen" autocomplete="off" required />
+      <input id="noteInput" maxlength="200" placeholder="Note (optional), e.g. 'the city'" autocomplete="off" />
+      <button type="submit" class="primary">Ask for it</button>
+    </form>
+
+    <nav class="tabs">
+      <button data-filter="todo" class="active">To record <span id="todoCount"></span></button>
+      <button data-filter="done">Recorded <span id="doneCount"></span></button>
+    </nav>
+
+    <ul id="list"></ul>
+    <p id="empty" class="muted center" hidden></p>
+  </main>
+
+  <div id="banner" hidden></div>
+  <div id="toast" hidden></div>
+
+  <script src="config.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
