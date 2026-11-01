@@ -86,7 +86,10 @@ const recorder = {
     if (!kind) throw new Error("This browser can't record audio.");
     this.kind = kind;
     this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    this.mr = new MediaRecorder(this.stream, kind.mime ? { mimeType: kind.mime } : undefined);
+    // 64 kbps is plenty for speech and keeps 1,000 short clips around 25 MB.
+    const opts = { audioBitsPerSecond: 64000 };
+    if (kind.mime) opts.mimeType = kind.mime;
+    this.mr = new MediaRecorder(this.stream, opts);
     this.chunks = [];
     this.mr.ondataavailable = (e) => e.data.size && this.chunks.push(e.data);
     this.mr.start();
